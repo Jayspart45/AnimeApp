@@ -21,6 +21,6 @@ export default function ReviewProvider({ children }) {
     fetchReview();
   }, []);
   return (
-    <AnimeContextContext.Provider value={review}>{children}</AnimeContext.Provider>
+    <AnimeContext.Provider value={review}>{children}</AnimeContext.Provider>
   );
 }
