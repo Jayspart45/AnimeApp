@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800;900&family=Teko:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #f4f4ed;
+  /* font-family: 'Prompt', sans-serif; */
+  font-family: "Teko", sans-serif;
+}
+body {
+  background: #5e239d !important;
+  overflow-x: hidden;
+}
+:root {
+  --color-1: #f61067;
+  --color-2: #00f0b5;
+  --color-3: #f61067;
+  --color-4: #f4f4ed;
+  --color-5: #f61067;
+}
+/* BasicModal.css */
+.otaku {
+  font-size: 7vw;
+  font-weight: 100;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  margin: auto;
+  text-transform: uppercase;
+  background: linear-gradient(
+    219deg,
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+    var(--color-3) 40%,
+    var(--color-3) 59%,
+    transparent 59%,
+    transparent 60%,
+    var(--color-4) 60%,
+    var(--color-4) 79%,
+    transparent 79%,
+    transparent 80%,
+    var(--color-5) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+/* Customize the scrollbar width and color */
+::-webkit-scrollbar {
+  width: 5px !important;
+  height: 10px !important;
+}
+
+/* Customize the scrollbar track */
+*::-webkit-scrollbar-track {
+  background-color: #00f0b5 !important;
+}
+
+/* Customize the scrollbar thumb */
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #f61067 !important;
+}
+hr {
+  border-bottom: 3px solid #f61067 !important;
+}
+.card {
+  position: relative;
+  cursor: pointer;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 18rem;
+  height: 100% !important;
+  box-shadow: 5px 5px 2px #00f0b5;
+  border: none !important;
+  border-radius: 0px !important;
+  background: #f61067 !important;
+}
+.card-body p {
+  margin-bottom: 0;
+}
+.card-text {
+  bottom: 0;
+  right: 0;
+  display: none;
+  padding: 10px;
+  position: absolute;
+  background: #333;
+  opacity: 0.9;
+  width: 100%;
+  height: 100%;
+}
+.card-body {
+  flex: none !important;
+}
+.card-top-img-container {
+  flex: 1; /* Allow the image container to expand and take available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide any overflowing image */
+}
+
+.card-img-top {
+  height: 100%; /* Set the image height to 100% of the container */
+  width: 100% !important; /* Allow the image to adjust its width proportionally */
+  object-fit: cover; /* Scale and crop the image to cover the container */
+}
+
+/*  */
+
+.search form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.search-btn {
+  padding: 10px 10px;
+  width: 100px;
+  background: #f61067;
+  border: none;
+  border-radius: 1px;
+  color: #f4f4ed;
+}
+
+/*  */
+@keyframes transform {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    display: block;
+  }
+}
+
+.card:hover .card-text {
+  display: block;
+  animation: transform 0.5s ease-in;
+}
+
+.card-img-top {
+  border-radius: 0px !important;
+}
+.col {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.search {
+  /* width: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#outlined-basic {
+  color: #f4f4ed;
+  width: 400px;
+}
+.carousel-item {
+  height: 100vh;
+}
+/* .carousel-control-prev {
+  background: #333 !important;
+}
+.carousel-control-next {
+  background: rgba(3, 3, 3, 0.6) !important; */
+/* } */
+@media (max-width: 768px) {
+  #outlined-basic {
+    width: auto;
+  }
+  .carousel-item {
+    height: 30vh;
+  }
+}
+/* Navbar below */
+
+.css-0 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
