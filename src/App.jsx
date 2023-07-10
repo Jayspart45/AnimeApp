@@ -1,76 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Anime from "./components/Anime/Anime";
 import Loading from "./components/Utility/Loading";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Review from "./components/Review/Review";
-import NavBar from "./components/Utility/Navbar";
-
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import Button from "react-bootstrap/Button";
+import Navbar from "./components/Utility/Navbar";
+import Character from "./components/Character/Character";
+import AnimeProvider from "./components/Context/AnimeProvider";
+import CharacterProvider from "./components/Context/CharacterProvider";
 function App() {
-  const [anime, setAnime] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [slider, setSlider] = useState(true);
+  const [show, setShow] = useState(false);
 
-  const handleSearch = (query) => {
-    if (query !== "") {
-      console.log(typeof query);
-      setSlider(false);
-    } else {
-      setSlider(true);
-    }
-    setSearchQuery(query);
-  };
-
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-
-      const url = `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(
-        searchQuery
-      )}`;
-
-      const response = await fetch(url);
-      const parseData = await response.json();
-      setAnime(parseData);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching anime list:", error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    setLoading(true); // Set loading state to true before fetching data
-    fetchData();
-  }, [searchQuery]);
-
-
-
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className="App">
-      <h1 className="text-center otaku"> OTAKUPEDIA</h1>
-      {loading ? (
-        <Loading />
-      ) : (
-        <Router>
-          <Routes>
-            <Route
-              index
-              exact
-              path="/"
-              element={
-                <Anime
-                  slider={slider}
-                  handleSearch={handleSearch}
-                  anime={anime}
-                />
-              }
-            />
-            <Route path="/review"  element={<Review />} />
-          </Routes>
-          <NavBar />
-        </Router>
-      )}
+      <Router>
+        <div className="center">
+          <h1 className="otaku m-0">OTAKUPEDIA</h1>
+          <Button variant="" onClick={handleShow}>
+            <MenuOpenIcon style={{ width: "40px", height: "40px" }} />
+          </Button>
+        </div>
+        <Navbar show={show} handleClose={handleClose} />
+
+        <Routes>
+          <Route
+            index
+            exact
+            path="/"
+            element={
+              <AnimeProvider>
+                <Anime />
+              </AnimeProvider>
+            }
+          />
+
+          <Route path="/review" element={<Review />} />
+          <Route
+            path="/character"
+            element={
+              <CharacterProvider>
+                <Character />
+              </CharacterProvider>
+            }
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }

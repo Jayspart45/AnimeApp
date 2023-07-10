@@ -3,14 +3,23 @@ import { Card } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import LoaderExample from "../Utility/Loading";
 import { ReviewContext } from "../Context/Context";
-
+import Detail from "./Detail";
 export default function ReviewItem() {
-  const review = useContext(ReviewContext);
+  const { review } = useContext(ReviewContext);
+  const [open, setOpen] = useState(false);
+  const [pass, setPass] = useState([]);
+
+  const handleOpen = (data) => {
+    setPass(data);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
   console.log(review);
   return (
     <>
-      {review && review.data && review.data.length > 0 ? (
-        review.data.map((data, index) => (
+      {review && review.length > 0 ? (
+        review.map((data, index) => (
           <Col className="col col-12 mb-5 " key={index} md={3} sm={6} lg={2}>
             <Card onClick={() => handleOpen(data)}>
               <div className="card-top-img-container">
@@ -45,6 +54,7 @@ export default function ReviewItem() {
       ) : (
         <LoaderExample />
       )}
+      <Detail pass={pass} handleClose={handleClose} open={open} />
     </>
   );
 }

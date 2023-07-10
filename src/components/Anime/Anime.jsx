@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import SearchBar from "../Utility/SearcBar";
 import AnimeList from "./AnimeList";
 import Slider from "../Slider";
-
-export default function Anime({ handleSearch, anime, slider }) {
+import { AnimeContext } from "../Context/Context";
+import Pagination from "../Utility/Pagination";
+import Loading from "../Utility/Loading";
+export default function Anime() {
+  const { slider, loading } = useContext(AnimeContext);
   return (
     <>
-      <SearchBar onSearch={handleSearch} />
-      {slider ? <Slider anime={anime} /> : <></>}
-      <AnimeList anime={anime} />
+      <SearchBar />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          {slider ? <Slider /> : <></>}
+          <AnimeList />
+          <Pagination />
+        </>
+      )}
     </>
   );
 }

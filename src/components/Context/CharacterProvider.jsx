@@ -1,39 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
-import { AnimeContext } from "./Context";
-export default function AnimeProvider({ children }) {
-  const [anime, setAnime] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+import React, { useEffect, useState, useRef } from "react";
+import { CharacterContext } from "./Context";
+
+export default function CharacterProvider({ children }) {
+  const [character, setCharacter] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [slider, setSlider] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const [pagination, setPagination] = useState(0);
   const currentPageRef = useRef(1);
-
   const handleSearch = (query) => {
-    if (query !== "") {
-      setSlider(false);
-    } else {
-      setSlider(true);
-    }
     setSearchQuery(query);
   };
-
   const fetchData = async (page = 1) => {
     try {
       setLoading(true);
-
-      const url = `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(
+      const url = `https://api.jikan.moe/v4/characters?q=${encodeURIComponent(
         searchQuery
       )}&page=${page}`;
 
       const response = await fetch(url);
       const data = await response.json();
-      const { pagination, data: animeData } = data;
+      const { pagination, data: charData } = data;
 
-      setAnime(animeData);
+      setCharacter(charData);
+
       setPagination(pagination);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching anime list:", error);
+      console.log("Error fetching charcter", error);
       setLoading(false);
     }
   };
@@ -62,13 +55,11 @@ export default function AnimeProvider({ children }) {
     setLoading(true);
     fetchData();
   }, [searchQuery]);
-
   return (
-    <AnimeContext.Provider
+    <CharacterContext.Provider
       value={{
-        anime,
+        character,
         handleSearch,
-        slider,
         loading,
         pagination,
         fetchNextPage,
@@ -76,6 +67,6 @@ export default function AnimeProvider({ children }) {
       }}
     >
       {children}
-    </AnimeContext.Provider>
+    </CharacterContext.Provider>
   );
 }

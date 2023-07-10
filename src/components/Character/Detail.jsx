@@ -50,32 +50,19 @@ export default function BasicModal({ handleClose, open, pass }) {
           </div>
 
           <h1 className="display-6 mb-5">
-            {pass.title_english ? pass.title_english : pass.title_japanese}
+            {pass.name ? pass.name : pass.name_kanji}
           </h1>
           <p className="lead mb-2">
-            About : {pass.background ? pass.background : pass.synopsis}
-          </p>
-          <p className="lead mb-2">Duration : {pass.duration}</p>
-          <p className="lead mb-2">
-            From : {pass.aired.string === null ? "NaN" : pass.aired.string}
+            Favorites : {pass.favorites !== null ? pass.favorites : "NaN"}
           </p>
           <p className="lead mb-2">
-            Type : {pass.type == null ? "NaN" : pass.type}
+            NickNames :{" "}
+            {pass.nicknames.length > 0
+              ? pass.nicknames.map((item) => item) + "."
+              : "NaN"}
           </p>
           <p className="lead mb-2">
-            Genre :{" "}
-            {pass.genres == null
-              ? "NaN"
-              : pass.genres.map((item) => item.name) + "."}
-          </p>
-          <p className="lead mb-2">
-            Producers :{" "}
-            {pass.producers == null
-              ? "NaN"
-              : pass.producers.map((item) => item.name) + "."}
-          </p>
-          <p className="lead mb-2">
-            Rank : {pass.rank <= 0 ? "NaN" : pass.rank}
+            About : {pass.about !== null ? pass.about : "NaN"}
           </p>
         </Box>
       </Modal>

@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { AnimeContext, CharacterContext } from "../Context/Context";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const animeContext = useContext(AnimeContext);
+  const characterContext = useContext(CharacterContext);
+
   const theme = createTheme({
     palette: {
       secondary: {
@@ -10,7 +16,6 @@ export default function SearchBar({ onSearch }) {
       },
     },
   });
-  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -20,7 +25,12 @@ export default function SearchBar({ onSearch }) {
     console.log(searchQuery);
 
     event.preventDefault();
-    onSearch(searchQuery);
+
+    if (animeContext != null) {
+      animeContext.handleSearch(searchQuery);
+    } else if (characterContext != null) {
+      characterContext.handleSearch(searchQuery);
+    }
   };
 
   return (
@@ -37,7 +47,9 @@ export default function SearchBar({ onSearch }) {
             onChange={handleSearchChange}
             focused
           />
-          <button type="submit" className="search-btn">Search</button>
+          <button type="submit" className="search-btn">
+            Search
+          </button>
         </form>
       </div>
     </ThemeProvider>

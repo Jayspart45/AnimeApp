@@ -25,7 +25,7 @@ const overflow = {
 };
 
 export default function BasicModal({ handleClose, open, pass }) {
-  // console.log(pass);
+  console.log(pass.name);
   if (pass.length <= 0) return;
   return (
     <div>
@@ -46,36 +46,29 @@ export default function BasicModal({ handleClose, open, pass }) {
               alignItems: "center",
             }}
           >
-            <img src={pass.images.webp.image_url} alt="" />
+            <img src={pass.user.images.webp.image_url} alt="" />
           </div>
 
-          <h1 className="display-6 mb-5">
-            {pass.title_english ? pass.title_english : pass.title_japanese}
-          </h1>
+          <h1 className="display-6 mb-4">{pass.entry.title}</h1>
           <p className="lead mb-2">
-            About : {pass.background ? pass.background : pass.synopsis}
+            Spoiler : {!pass.is_spoiler ? "No Spoiler" : "Spoiler"}
           </p>
-          <p className="lead mb-2">Duration : {pass.duration}</p>
           <p className="lead mb-2">
-            From : {pass.aired.string === null ? "NaN" : pass.aired.string}
+            Rating : {pass.score == null ? "NaN" : pass.score + "/10"}
+          </p>
+          <p className="lead mb-2">
+            Status : {pass.tags == null ? "NaN" : pass.tags}
+          </p>
+
+          <p className="lead mb-2">
+            Year : {pass.date == null ? "NaN" : pass.date.split("T")[0]}
           </p>
           <p className="lead mb-2">
             Type : {pass.type == null ? "NaN" : pass.type}
           </p>
+          <p className="lead mb-2">UserName : {pass.user.username}</p>
           <p className="lead mb-2">
-            Genre :{" "}
-            {pass.genres == null
-              ? "NaN"
-              : pass.genres.map((item) => item.name) + "."}
-          </p>
-          <p className="lead mb-2">
-            Producers :{" "}
-            {pass.producers == null
-              ? "NaN"
-              : pass.producers.map((item) => item.name) + "."}
-          </p>
-          <p className="lead mb-2">
-            Rank : {pass.rank <= 0 ? "NaN" : pass.rank}
+            Review : {pass.review == null ? "NaN" : pass.review}
           </p>
         </Box>
       </Modal>
