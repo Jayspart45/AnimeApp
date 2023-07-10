@@ -24,7 +24,9 @@ body {
   padding: 10px;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 1px 0px 2px  #f4f4ed;
+  box-shadow: 1px 0px 2px #f4f4ed;
+
+  /* box-shadow: 2px 2px 3px  #00f0b5; */
   flex-direction: row;
   width: 100%;
 }
@@ -221,7 +223,7 @@ svg {
   display: flex;
   background: #5e239d;
   padding: 15px 10px;
-  position: sticky;
+  position: fixed;
   left: 0;
   bottom: 0;
   justify-content: center;
