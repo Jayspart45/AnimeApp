@@ -70,6 +70,9 @@ export default function BasicModal({ handleClose, open, pass }) {
           <p className="lead mb-2">
             Review : {pass.review == null ? "NaN" : pass.review}
           </p>
+          <div onClick={handleClose} className=" text-center search-btn">
+            Close
+          </div>
         </Box>
       </Modal>
     </div>
