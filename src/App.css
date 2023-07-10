@@ -24,6 +24,7 @@ body {
   padding: 10px;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 1px 0px 2px  #f4f4ed;
   flex-direction: row;
   width: 100%;
 }
@@ -36,7 +37,7 @@ body {
 }
 /* BasicModal.css */
 .otaku {
-  font-size: 4vw;
+  font-size: 3rem;
   font-weight: 100;
 
   text-transform: uppercase;
@@ -133,6 +134,7 @@ hr {
   justify-content: center;
   align-items: flex-end;
   gap: 5px;
+  margin-top: 30px;
 }
 
 .search-btn {
