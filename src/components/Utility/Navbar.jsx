@@ -12,9 +12,12 @@ export default function Navbar({ show, handleClose }) {
   const style = {
     background: "#5e239d",
   };
+  const closeButtonStyle = {
+    color: "red", // Set the desired color for the close button
+  };
   return (
     <Offcanvas show={show} onHide={handleClose}>
-      <Offcanvas.Header closeButton>
+      <Offcanvas.Header closeButton style={closeButtonStyle}>
         <h1 className="otaku animetxt m-0">OTAKUPEDIA</h1>
       </Offcanvas.Header>
       <Offcanvas.Body>
@@ -22,8 +25,8 @@ export default function Navbar({ show, handleClose }) {
           <BottomNavigation showLabels sx={style}>
             <BottomNavigationAction
               component={Link}
-              to="/"
-              value="/"
+              to="/anime"
+              value="/anime"
               label="Anime"
               icon={<CatchingPokemonIcon />}
             />
@@ -33,7 +36,8 @@ export default function Navbar({ show, handleClose }) {
               value="/character"
               label="Character"
               icon={<AccessibilityIcon />}
-            />s
+            />
+            s
             <BottomNavigationAction
               component={Link}
               to="/review"
