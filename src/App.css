@@ -286,6 +286,6 @@ svg {
 }
 @media (width<=640px) {
   .Login form {
-    width: 350px;
+    width: 300px;
   }
 }
