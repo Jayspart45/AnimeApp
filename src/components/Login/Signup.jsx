@@ -20,14 +20,14 @@ export default function Signup() {
   useEffect(() => {
     const appclient = new Client();
     appclient
-      .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint
-      .setProject("64ad05e142768fa53299"); // Your project ID
+      .setEndpoint("https://cloud.appwrite.io/v1")
+      .setProject("64ad05e142768fa53299");
     setClient(appclient);
   }, []);
 
-  // This Handle Login aand Navigate to Next Page
+  // This Handle Login and Navigate to Next Page
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     if (!client) return;
     if (!validatePassword(password)) {
       setMessage(
@@ -42,7 +42,6 @@ export default function Signup() {
     }
     const account = new Account(client);
     try {
-      // Use ID.unique() to generate a unique user ID
       const response = await account.create(ID.unique(), email, password);
       setLogin(true);
       navigate("/anime");

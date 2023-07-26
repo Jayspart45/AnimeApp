@@ -19,12 +19,11 @@ export default function Login() {
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
-    // Initialize the client object only once
     const appwriteClient = new Client();
 
     appwriteClient
-      .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint
-      .setProject("64ad05e142768fa53299"); // Your project ID
+      .setEndpoint("https://cloud.appwrite.io/v1")
+      .setProject("64ad05e142768fa53299");
 
     setClient(appwriteClient);
   }, []);
@@ -37,10 +36,10 @@ export default function Login() {
     const account = new Account(client);
 
     try {
-      // Use createEmailSession to log in an existing user
       const response = await account.createEmailSession(email, password);
       setLogin(true);
       console.log(response);
+
       navigate("/anime");
     } catch (error) {
       setMessage(error.message);

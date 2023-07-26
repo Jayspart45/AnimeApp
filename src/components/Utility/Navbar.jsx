@@ -16,7 +16,7 @@ export default function Navbar({ show, handleClose }) {
     background: "#5e239d",
   };
   const closeButtonStyle = {
-    color: "red", // Set the desired color for the close button
+    color: "red", 
   };
 
   const handleLogOut = () => {

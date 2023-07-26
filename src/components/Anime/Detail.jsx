@@ -20,16 +20,11 @@ const style = {
   p: 4,
 };
 
-const overflow = {
-  // overflow: "auto",
-};
-
 export default function BasicModal({ handleClose, open, pass }) {
   if (pass.length <= 0) return;
   return (
     <div>
       <Modal
-        sx={overflow}
         className="Modal"
         open={open}
         onClose={handleClose}
