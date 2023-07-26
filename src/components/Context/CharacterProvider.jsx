@@ -26,7 +26,6 @@ export default function CharacterProvider({ children }) {
       setPagination(pagination);
       setLoading(false);
     } catch (error) {
-      console.log("Error fetching charcter", error);
       setLoading(false);
     }
   };
@@ -44,7 +43,6 @@ export default function CharacterProvider({ children }) {
 
   const fetchPreviousPage = () => {
     if (pagination && pagination.current_page > 1) {
-      console.log("running");
       const previousPage = currentPageRef.current - 1;
       fetchData(previousPage);
       currentPageRef.current = previousPage;

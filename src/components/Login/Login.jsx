@@ -1,18 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Client, Account } from "appwrite";
 import { Link, useNavigate } from "react-router-dom";
 import Alert from "../Utility/Alert";
+import { LoginContext } from "../Context/Context";
 
 export default function Login() {
   const navigate = useNavigate();
+
+  // Getting the Login Data
+  const { setLogin } = useContext(LoginContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [client, setClient] = useState(null);
   const [message, setMessage] = useState("");
   const [alert, setAlert] = useState(false);
+
   useEffect(() => {
     // Initialize the client object only once
     const appwriteClient = new Client();
@@ -34,7 +39,8 @@ export default function Login() {
     try {
       // Use createEmailSession to log in an existing user
       const response = await account.createEmailSession(email, password);
-      console.log(response); // Successful login response
+      setLogin(true);
+      console.log(response);
       navigate("/anime");
     } catch (error) {
       setMessage(error.message);
@@ -42,7 +48,6 @@ export default function Login() {
       setTimeout(() => {
         setAlert(false);
       }, 5000);
-      console.log(error); // Error response
     }
   };
 
@@ -56,8 +61,9 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={theme}>
-      {alert ? <Alert message={message} /> : <></>}
       <div className="Login py-4">
+        {alert ? <Alert message={message} /> : <></>}
+
         <form
           onSubmit={handleLogin}
           method="post"

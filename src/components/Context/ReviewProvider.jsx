@@ -19,7 +19,6 @@ export default function ReviewProvider({ children }) {
       setReview(reviewData);
       setPagination(pagination);
       setLoading(false);
-      console.log(parseReview,pagination);
     } catch (error) {
       console.error("Error fetching anime list:", error);
     }
@@ -38,7 +37,6 @@ export default function ReviewProvider({ children }) {
 
   const fetchPreviousPage = () => {
     if (pagination && pagination.current_page > 1) {
-      console.log("running");
       const previousPage = currentPageRef.current - 1;
       fetchReview(previousPage);
       currentPageRef.current = previousPage;

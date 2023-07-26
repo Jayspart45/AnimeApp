@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 require("dotenv").config(); // Load environment variables from .env file
 
 const url = "mongodb+srv://jay:1357945@cluster0.u2uewqx.mongodb.net/Animeapp";
-console.log(url);
 
 mongoose.connect(url);
 

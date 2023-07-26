@@ -25,7 +25,6 @@ const overflow = {
 };
 
 export default function BasicModal({ handleClose, open, pass }) {
-  console.log(pass.name);
   if (pass.length <= 0) return;
   return (
     <div>

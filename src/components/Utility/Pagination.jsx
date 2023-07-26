@@ -18,14 +18,12 @@ const Pagination = () => {
 
   if (animeContext) {
     ({ pagination, fetchNextPage, fetchPreviousPage } = animeContext);
-    console.log(animeContext);
 
     handleNextPage = () => {
       fetchNextPage();
     };
 
     handlePreviousPage = () => {
-      console.log("Clicked prev");
       fetchPreviousPage();
     };
   } else if (characterContext) {
@@ -36,11 +34,9 @@ const Pagination = () => {
     };
 
     handlePreviousPage = () => {
-      console.log("Clicked prev");
       fetchPreviousPage();
     };
   } else if (reviewContext) {
-    console.log(reviewContext);
     ({ pagination, fetchNextPage, fetchPreviousPage } = reviewContext);
 
     handleNextPage = () => {
@@ -48,7 +44,6 @@ const Pagination = () => {
     };
 
     handlePreviousPage = () => {
-      console.log("Clicked prev");
       fetchPreviousPage();
     };
   }

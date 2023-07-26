@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Client, Account, ID } from "appwrite";
 import { Link, useNavigate } from "react-router-dom";
 import Alert from "../Utility/Alert";
+import { LoginContext } from "../Context/Context";
 
 export default function Signup() {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [client, setClient] = useState(null);
   const [message, setMessage] = useState("");
   const [alert, setAlert] = useState(false);
+  const { setLogin } = useContext(LoginContext);
 
+  // Connect client to Appwrite
   useEffect(() => {
     const appclient = new Client();
     appclient
@@ -21,29 +25,45 @@ export default function Signup() {
     setClient(appclient);
   }, []);
 
+  // This Handle Login aand Navigate to Next Page
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent default form submission
-
     if (!client) return;
-
-    const account = new Account(client);
-
-    try {
-      // Use ID.unique() to generate a unique user ID
-      const response = await account.create(ID.unique(), email, password);
-      console.log(response);
-      navigate("/anime");
-    } catch (error) {
-      setMessage(error.message);
-
+    if (!validatePassword(password)) {
+      setMessage(
+        " Password must be at least 8 characters and conatin both letters and numbers"
+      );
       setAlert(true);
       setTimeout(() => {
         setAlert(false);
-      }, 5000);
-      console.log(error);
+      }, 3000);
+
+      return;
+    }
+    const account = new Account(client);
+    try {
+      // Use ID.unique() to generate a unique user ID
+      const response = await account.create(ID.unique(), email, password);
+      setLogin(true);
+      navigate("/anime");
+    } catch (error) {
+      setMessage(error.message);
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
     }
   };
 
+  // Validate Password Function
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=])[a-zA-Z\d@#$%^&+=]{8,}$/;
+
+    return passwordRegex.test(password);
+  };
+
+  //Custom Styles for Material UI
   const theme = createTheme({
     palette: {
       secondary: {
@@ -60,7 +80,7 @@ export default function Signup() {
         <form
           onSubmit={handleLogin}
           method="Post"
-          className="d-flex  flex-column p-5"
+          className="d-flex flex-column p-5"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +94,7 @@ export default function Signup() {
               clipRule="evenodd"
             />
           </svg>
-          <h1 className="text-center ">Signup</h1>
+          <h1 className="text-center display-4 ">Signup</h1>
 
           <label htmlFor="email" className="mx-auto mb-4 ">
             <TextField
@@ -85,8 +105,10 @@ export default function Signup() {
               color="secondary"
               focused
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />{" "}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
           </label>
           <label htmlFor="password" className="mx-auto mb-4">
             <TextField

@@ -22,7 +22,6 @@ export default function SearchBar() {
   };
 
   const handleSearchSubmit = (event) => {
-    console.log(searchQuery);
 
     event.preventDefault();
 

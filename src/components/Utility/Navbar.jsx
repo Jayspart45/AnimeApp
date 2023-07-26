@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -7,13 +7,20 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import ReviewsIcon from "@mui/icons-material/Reviews";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
-// import RateReviewSharpIcon from "@mui/icons-material/RateReviewSharp";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { LoginContext } from "../Context/Context";
+
 export default function Navbar({ show, handleClose }) {
+  const { setLogin } = useContext(LoginContext);
   const style = {
     background: "#5e239d",
   };
   const closeButtonStyle = {
     color: "red", // Set the desired color for the close button
+  };
+
+  const handleLogOut = () => {
+    setLogin(false);
   };
   return (
     <Offcanvas show={show} onHide={handleClose}>
@@ -37,13 +44,22 @@ export default function Navbar({ show, handleClose }) {
               label="Character"
               icon={<AccessibilityIcon />}
             />
-            s
+
             <BottomNavigationAction
               component={Link}
               to="/review"
               value="/review"
               label="Review"
               icon={<ReviewsIcon />}
+            />
+
+            <BottomNavigationAction
+              component={Link}
+              to="/"
+              value="/"
+              label="LogOut"
+              onClick={handleLogOut}
+              icon={<LogoutIcon />}
             />
           </BottomNavigation>
         </Box>

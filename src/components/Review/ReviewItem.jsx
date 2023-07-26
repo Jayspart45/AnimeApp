@@ -15,7 +15,6 @@ export default function ReviewItem() {
   };
 
   const handleClose = () => setOpen(false);
-  console.log(review);
   return (
     <>
       {review && review.length > 0 ? (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Anime from "./components/Anime/Anime";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Review from "./components/Review/Review";
@@ -10,10 +10,14 @@ import AnimeProvider from "./components/Context/AnimeProvider";
 import CharacterProvider from "./components/Context/CharacterProvider";
 import Login from "./components/Login/Login";
 import Signup from "./components/Login/Signup";
+import { LoginContext } from "./components/Context/Context";
 function App() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const { login } = useContext(LoginContext);
+  console.log(login);
   return (
     <div className="App">
       <Router>
@@ -25,7 +29,7 @@ function App() {
             <MenuOpenIcon style={{ width: "40px", height: "40px" }} />
           </Button>
         </div>
-        <Navbar show={show} handleClose={handleClose} />
+        {login ? <Navbar show={show} handleClose={handleClose} /> : <></>}
 
         <Routes>
           <Route index exact path="/" element={<Login />} />

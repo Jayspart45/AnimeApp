@@ -6,7 +6,6 @@ import Loading from "../Utility/Loading";
 import Detail from "./Detail";
 export default function CharacterItem() {
   const { character } = useContext(CharacterContext);
-  console.log(character);
 
   const [open, setOpen] = useState(false);
   const [pass, setPass] = useState([]);

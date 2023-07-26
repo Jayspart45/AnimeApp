@@ -51,7 +51,6 @@ export default function AnimeProvider({ children }) {
 
   const fetchPreviousPage = () => {
     if (pagination && pagination.current_page > 1) {
-      console.log("running");
       const previousPage = currentPageRef.current - 1;
       fetchData(previousPage);
       currentPageRef.current = previousPage;

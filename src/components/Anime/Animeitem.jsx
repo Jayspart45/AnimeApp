@@ -6,7 +6,6 @@ import { AnimeContext } from "../Context/Context";
 import Loading from "../Utility/Loading";
 export default function Animeitem() {
   const { anime } = useContext(AnimeContext);
-  // console.log(anime);
   const [open, setOpen] = useState(false);
   const [pass, setPass] = useState([]);
 
