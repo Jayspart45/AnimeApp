@@ -284,7 +284,7 @@ svg {
   text-align: center;
   color: #00f0b5;
 }
-@media (width<=400px) {
+@media (width<=640px) {
   .Login form {
     width: 350px;
   }
